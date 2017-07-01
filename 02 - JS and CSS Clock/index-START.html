@@ -64,17 +64,21 @@
       background: black;
       position: absolute;
       top: 50%;
-      transform-origin: right;
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(.1, 2.7, .58, 1);
     }
   </style>
 
   <script>
-    setInterval(() => {
-      const hourHand = document.querySelector('.clock-face > .hour-hand');
-      const minuteHand = document.querySelector('.clock-face > .min-hand');
-      const secondHand = document.querySelector('.clock-face > .second-hand');
+    const hourHand = document.querySelector('.clock-face > .hour-hand');
+    const minuteHand = document.querySelector('.clock-face > .min-hand');
+    const secondHand = document.querySelector('.clock-face > .second-hand');
 
+    const setDate = () => {
       const curDate = new Date();
+
       const hours = curDate.getHours();
       const minutes = curDate.getMinutes();
       const seconds = curDate.getSeconds();
@@ -86,8 +90,9 @@
       hourHand.style.transform = `rotate(${hoursDeg}deg)`;
       minuteHand.style.transform = `rotate(${minutesDeg}deg)`;
       secondHand.style.transform = `rotate(${secondsDeg}deg)`;
-
-    }, 1000)
+    }
+    setInterval(setDate, 1000);
+    setDate();
   </script>
 </body>
 
